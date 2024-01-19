@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     const data = async () => {
-      const query = userQuery(userInfo?.sub);
+      const query = userQuery(userInfo?._id);
       const result = await client.fetch(query);
       setUser(result[0]);
     };
@@ -44,8 +44,8 @@ const Home = () => {
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
-          <Link to={user ? `user-profile/${userInfo?.sub}` : "/login"}>
-            <img src={userInfo?.picture} alt="logo" className="w-12" />
+          <Link to={user ? `user-profile/${userInfo?._id}` : "/login"}>
+            <img src={userInfo?.image} alt="profile" className="w-12" />
           </Link>
         </div>
         {toggleSidebar && (

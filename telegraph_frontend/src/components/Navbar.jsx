@@ -4,7 +4,7 @@ import { IoMdAdd, IoMdSearch } from "react-icons/io";
 
 const Navbar = ({ searchItems, setSearchItems, user }) => {
   const navigate = useNavigate();
-  if (!user) return null;
+  // if (!user) return null;
   return (
     <div className="flex gap-2 md:gap-5 w-full mt-5 pb-7">
       <div className="flex justify-start items-center w-full px-2 rounded-md bg-white border-none outline-none focus-within:shadow-sm">
@@ -18,9 +18,26 @@ const Navbar = ({ searchItems, setSearchItems, user }) => {
           className="p-2 w-full bg-white outline-none"
         />
       </div>
+      <div className="gap-3">
+        {user ? (
+          <p>{user.userName}</p>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <span> / </span>
+            <Link to="register">Register</Link>
+          </>
+        )}
+      </div>
       <div className="flex gap-3">
         <Link to={`user-profile/${user?._id}`} className="hidden md:block">
-          <img src={user.picture} alt="user" className="w-14 h-12 rounded-lg" />
+          {user ? (
+            <img
+              src={user?.picture}
+              alt="profile"
+              className="w-14 h-12 rounded-lg"
+            />
+          ) : null}
         </Link>
         <Link
           to="create-pin"

@@ -41,6 +41,8 @@ const Login = () => {
       (currentUser) => user.name === currentUser.email
     );
 
+    console.log(currentUser);
+
     if (!currentUser || currentUser.password !== user.password) {
       setError(true);
       return;
